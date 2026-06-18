@@ -30,6 +30,7 @@ void dataReader()
     }
 
     string line;
+    int id = 0;
     
     // Get line from .CSV
     while (getline(file, line))
@@ -41,25 +42,41 @@ void dataReader()
 
         vector<string> data;
         string word;
+        string name;
+        bool nameSet = false;
 
-        // Break up words from line
-        for (int iter = 0; iter < line.length(); iter++)
+        // Break up words from line to create data vector
+        for (int iter = 0; iter <= line.length(); iter++)
         {
-            if (line[iter] == ',')
+            // Iterates one extra time to get last word
+            if (line[iter] == ',' || iter == line.length())
             {
-                data.push_back(word);                
-                word = ""; // Reset variable
+                if (nameSet)
+                {
+                    data.push_back(word);
+                }
+                else
+                {
+                    name = word;
+                    nameSet = true;
+                }
+                
+                word = ""; // Reset word variable
             }
             else
             {
                 word += line[iter]; // Add characters to word
             }
-
-            // profile.push_back(Camper(data.front(), data));
-            profile.push_back(Camper(data.front()));
         }
+
+        // Create Camper object
+        Camper_C camper(id, name, data);
+
+        // Add Camper object to vector
+        profile.push_back(camper);
+        id++; // Increment ID for next camper
         
-        // cout << endl;
+        data.clear(); // Reset local vector—not needed
     }
 
     file.close();
@@ -67,8 +84,15 @@ void dataReader()
 
 void print()
 {
-    for (const auto& item : profile)
+    for (const auto& camper : profile)
     {
-        cout << item.name;
+        cout << camper.id << ". " << camper.name << ": ";
+
+        for (const auto& rank : camper.rankings)
+        {
+            cout << rank << " ";
+        }
+
+        cout << endl;
     }
 }
