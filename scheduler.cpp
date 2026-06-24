@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-// #include <string>
+#include <iomanip>
 #include <sstream>
 
 #include "scheduler.h"
@@ -23,6 +23,7 @@ void dataReader()
     if (!file.is_open())
     {
         cout << "Error opening " << data << "!" << endl;
+        return;
     }
     else
     {
@@ -42,8 +43,6 @@ void dataReader()
 
         vector<string> data;
         string word;
-        string name;
-        bool nameSet = false;
 
         // Break up words from line to create data vector
         for (int iter = 0; iter <= line.length(); iter++)
@@ -51,15 +50,7 @@ void dataReader()
             // Iterates one extra time to get last word
             if (line[iter] == ',' || iter == line.length())
             {
-                if (nameSet)
-                {
-                    data.push_back(word);
-                }
-                else
-                {
-                    name = word;
-                    nameSet = true;
-                }
+                data.push_back(word); // Everything goes into vector
                 
                 word = ""; // Reset word variable
             }
@@ -69,11 +60,20 @@ void dataReader()
             }
         }
 
+        // Assign vector elements to variables
+        string firstName = data[0];
+        string lastName = data[1];
+        int age = stoi(data[2]);
+        int cabin = stoi(data[3]);
+
+        // Delete the first few elements because they are in variables no
+        data.erase(data.begin(), data.begin() + 4);
+
         // Create Camper object
-        Camper_C camper(id, name, data);
+        Camper_C camper(id, firstName, lastName, age, cabin, data);
 
         // Add Camper object to vector
-        profile.push_back(camper);
+        Camper_V.push_back(camper);
         id++; // Increment ID for next camper
         
         data.clear(); // Reset local vector—not needed
@@ -84,13 +84,26 @@ void dataReader()
 
 void print()
 {
-    for (const auto& camper : profile)
+    for (const auto& camper : Camper_V)
     {
-        cout << camper.id << ". " << camper.name << ": ";
+        cout << left;
+        cout << setw(4)  << (to_string(camper.id) + ".");
+
+        cout << setw(15) << camper.firstName;
+        cout << setw(15) << camper.lastName;
+
+        cout << "Age: ";
+        cout << right << setw(2) << camper.age;
+
+        cout << "  Cabin: ";
+        cout << right << setw(2) << camper.cabin;
+
+        cout << "  ";
+        cout << left;
 
         for (const auto& rank : camper.rankings)
         {
-            cout << rank << " ";
+            cout << setw(12) << rank;
         }
 
         cout << endl;
