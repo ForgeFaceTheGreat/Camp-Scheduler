@@ -1,0 +1,21 @@
+Activity,Slots,Day,StartTime,EndTime
+Archery,10,0,9:00 AM,10:30 AM
+Archery,10,2,2:00 PM,3:30 PM
+Archery,10,4,9:00 AM,10:30 AM
+Canoeing,8,0,9:00 AM,11:00 AM
+Canoeing,8,3,1:30 PM,3:30 PM
+Swimming,12,1,10:00 AM,11:30 AM
+Swimming,12,4,2:00 PM,3:30 PM
+Hiking,15,2,9:30 AM,11:30 AM
+Hiking,15,5,8:30 AM,10:30 AM
+Crafts,20,0,1:00 PM,2:30 PM
+Crafts,20,3,9:00 AM,10:30 AM
+Crafts,20,5,2:00 PM,3:30 PM
+Riflery,8,1,1:00 PM,2:30 PM
+Riflery,8,4,9:30 AM,11:00 AM
+Climbing,10,2,1:00 PM,2:30 PM
+Climbing,10,6,10:00 AM,11:30 AM
+Fishing,12,1,8:30 AM,10:30 AM
+Fishing,12,5,1:00 PM,3:00 PM
+Nature,15,3,10:00 AM,11:30 AM
+Nature,15,6,2:00 PM,3:30 PM

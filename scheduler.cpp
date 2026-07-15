@@ -9,32 +9,37 @@ using namespace std;
 
 int main()
 {
-    dataReader();
-    print();
+    // dataReader();
+    // print();
+
+    // minutesSinceMidnight(9, 0);
+    cout << msmTooTime(780) << endl;
 
     return 0;
 }
 
 void dataReader()
 {
-    string data = "data.csv";
-    fstream file(data);
+    // Create, open, parse, and close activity file stream object
+    string activities = "activities.csv";
+    fstream activities_fstream = fileValidation(activities);
+    // activityParser(activities_fstream);
+    activities_fstream.close();
+    
+    // Create, open, parse, and close camper file stream object
+    string campers = "campers.csv";
+    fstream campers_fstream = fileValidation(campers);
+    camperParser(campers_fstream);
+    campers_fstream.close();
+}
 
-    if (!file.is_open())
-    {
-        cout << "Error opening " << data << "!" << endl;
-        return;
-    }
-    else
-    {
-        cout << "File is open!" << endl;
-    }
-
+void camperParser(fstream& stream)
+{
     string line;
     int id = 0;
     
     // Get line from .CSV
-    while (getline(file, line))
+    while (getline(stream, line))
     {
         if (!line.empty() && line.back() == '\r')
         {
@@ -78,8 +83,44 @@ void dataReader()
         
         data.clear(); // Reset local vector—not needed
     }
+}
 
-    file.close();
+void activityParser(fstream& file)
+{
+
+}
+
+fstream fileValidation(const string& fileName)
+{
+    fstream file(fileName);
+    
+    if (!file.is_open())
+    {
+        cout << "Error opening " << fileName << "!" << endl;
+    }
+    else
+    {
+        cout << fileName << " is open!" << endl;
+    }
+
+    return file;
+}
+
+int minutesSinceMidnight(int hour, int minute)
+{
+    int time = 60 * hour + minute;
+
+    return time;
+}
+
+string msmTooTime(int msm)
+{
+    int hour = msm / 60;
+    int minutes = msm % 60;
+
+    string min = ((minutes == 0) ? (to_string(minutes) + "0") : to_string(minutes));
+
+    return (hour > 12) ? (to_string(hour - 12) + ":" + min + " PM") : (to_string(hour) + ":" + min + " AM");
 }
 
 void print()

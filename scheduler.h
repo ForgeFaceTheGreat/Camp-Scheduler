@@ -10,6 +10,21 @@ using namespace std;
 // Reads data from .CSV, parses and stores it
 void dataReader();
 
+// Checks for .csv files and opens them
+fstream fileValidation(const string& file);
+
+// Parses the campers.csv and creates IDs for campers
+void camperParser(fstream& stream);
+
+// Parses the activities.csv and creates IDs for activities
+void activityParser(fstream& stream);
+
+// Converts 24-hour time (9:30) to minutes since midnight (570)
+int minutesSinceMidnight(int hour, int minute);
+
+// Converts minutes since midnight to 12-hour time
+string msmTooTime(int msm);
+
 // Prints all campers and rankings
 void print();
 
