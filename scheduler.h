@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 // Reads data from .CSV, parses and stores it
 void dataReader();
 
@@ -20,24 +19,32 @@ void camperParser(fstream& stream);
 void activityParser(fstream& stream);
 
 // Converts 24-hour time (9:30) to minutes since midnight (570)
-int minutesSinceMidnight(int hour, int minute);
+int msm(int hour, int minute);
 
 // Converts minutes since midnight to 12-hour time
 string msmTooTime(int msm);
 
+// Looks up an activity and checks if it is full
+bool activityFull(int activityID);
+
 // Prints all campers and rankings
-void print();
+void printCamperClass();
+
+// Prints all activities and assigned campers
+void printActivityClass();
 
 // Structure of camper data; name, ID, rankings, etc...
 class Camper_C
 {
     public:
-    int id; // For storing camper ID number
-    string firstName; // For storing camper first name
-    string lastName; // For storing camper last name
-    int age; // For storing camper age
-    int cabin; // For storing camper cabin number
-    vector<string> rankings; // For storing camper activity rankings
+        int id; // For storing camper ID number
+        string firstName; // For storing camper first name
+        string lastName; // For storing camper last name
+        int age; // For storing camper age
+        int cabin; // For storing camper cabin number
+        vector<string> rankings; // For storing camper activity rankings
+
+        vector<int> assignedActivities; // For storing assigned activity ID's
 
     Camper_C(int id, string firstName, string lastName, int age, int cabin, vector<string> rankings)
     {
@@ -57,13 +64,20 @@ class Activity_C
         int id; // For storing the activity's ID's
         string name; // For storing the activity's name
         int slots; // For storing total slots
+        int day; // For storing the day of the activity
+        int startTime; // For storing the end time
+        int endTime; // For storing the end time
 
-        vector<int> assignedCampers; // Uses camper ID's
+        vector<int> assignedCampers; // For storing assigned camper ID's
 
-        Activity_C(string name, vector<int> assignedCampers)
+        Activity_C(int id, string name, int slots, int day, int startTime, int endTime)
         {
+            this->id = id;
             this->name = name;
-            this->assignedCampers = assignedCampers;
+            this->slots = slots;
+            this->day = day;
+            this->startTime = startTime;
+            this->endTime = endTime;
         }
 };
 
