@@ -27,6 +27,9 @@ string msmTooTime(int msm);
 // Looks up an activity and checks if it is full
 bool activityFull(int activityID);
 
+// Assigns a camper to an activity and adds the activity to the camper's assigned activities
+void assignCamperActivity(int camperID, int activityID);
+
 // Prints all campers and rankings
 void printCamperClass();
 

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include <cassert>
 
 #include "scheduler.h"
 
@@ -15,6 +16,16 @@ int main()
 
     // minutesSinceMidnight(9, 0);
     // cout << msmTooTime(780) << endl;
+
+    // for (int i = 0; i <= 14; i++)
+    // {
+    //     Activity_V[0].assignedCampers.push_back(i);
+    // }
+
+    // for (const auto& iter : Activity_V)
+    // {
+    //     cout << iter.name << " is full: " << (activityFull(iter.id) ? "Yes" : "No") << " (" << iter.assignedCampers.size() << "/" << iter.slots << ")" << endl;
+    // }
 
     return 0;
 }
@@ -175,9 +186,35 @@ bool activityFull(int activityID)
     {
         if (activity.id == activityID)
         {
-            return (activity.assignedCampers.size() >= activity.slots) ? true : false;
+            return (activity.assignedCampers.size() >= activity.slots);
         }
-    } 
+    }
+    
+    assert(false && "Activity ID not found!");
+    return false;
+}
+
+void assignCamperActivity(int camperID, int activityID)
+{
+    // Add the activity to the Camper's assigned activiies
+    for (auto& camperIter : Camper_V)
+    {
+        if (camperIter.id == camperID)
+        {
+            camperIter.assignedActivities.push_back(activityID);
+            break;
+        }
+    }
+
+    // Add the camper to the Activity's assigned campers
+    for (auto& activityIter : Activity_V)
+    {
+        if (activityIter.id == activityID)
+        {
+            activityIter.assignedCampers.push_back(camperID);
+            break;
+        }
+    }
 }
 
 void printCamperClass()
