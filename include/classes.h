@@ -36,6 +36,7 @@ class Activity_C
     public:
         int id; // For storing the activity's ID's
         string name; // For storing the activity's name
+        string location; // For storing the activity's location
         int slots; // For storing total slots
         int day; // For storing the day of the activity
         int startTime; // For storing the end time
@@ -43,10 +44,11 @@ class Activity_C
 
         vector<int> assignedCampers; // For storing assigned camper ID's
 
-        Activity_C(int id, string name, int slots, int day, int startTime, int endTime)
+        Activity_C(int id, string name, string location, int slots, int day, int startTime, int endTime)
         {
             this->id = id;
             this->name = name;
+            this->location = location;
             this->slots = slots;
             this->day = day;
             this->startTime = startTime;

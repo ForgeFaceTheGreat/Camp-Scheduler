@@ -1,6 +1,6 @@
-#include "include/classes.h"
-#include "include/print.h"
-#include "include/helper.h"
+#include "classes.h"
+#include "print.h"
+#include "helper.h"
 
 void printCamperClass()
 {
@@ -38,6 +38,7 @@ void printActivityClass()
 
         cout << setw(5)  << (to_string(activity.id) + ".");
         cout << setw(15) << activity.name;
+        cout << setw(20) << activity.location;
 
         cout << "Slots: ";
         cout << right << setw(2) << activity.slots;

@@ -1,9 +1,9 @@
 #include <iostream>
-
-#include "include/classes.h"
-#include "include/print.h"
-#include "include/parser.h"
-#include "include/helper.h"
+    
+#include "classes.h"
+#include "print.h"
+#include "parser.h"
+#include "helper.h"
 
 using namespace std;
 
@@ -13,17 +13,17 @@ int main()
     printCamperClass();
     printActivityClass();
     
-    for (int i = 0; i <= 14; i++)
-    {
-        assignCamperActivity(i, 0);
-        // Activity_V[0].assignedCampers.push_back(i);
-    }
+    // for (int i = 0; i <= 14; i++)
+    // {
+    //     assignCamperActivity(i, 0);
+    //     // Activity_V[0].assignedCampers.push_back(i);
+    // }
     
-    printCampersWithAssignedActivities();
+    // printCampersWithAssignedActivities();
 
-    cout << endl;
+    // cout << endl;
 
-    printActivitiesWithAssignedCampers();
+    // printActivitiesWithAssignedCampers();
 
     return 0;
 }

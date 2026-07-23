@@ -1,5 +1,5 @@
-#include "include/helper.h"
-#include "include/classes.h"
+#include "helper.h"
+#include "classes.h"
 
 int msm(int hour, int minute)
 {
@@ -25,7 +25,7 @@ bool activityFull(int activityID)
     {
         if (activity.id == activityID)
         {
-            return (activity.assignedCampers.size() >= activity.slots);
+            return (activity.assignedCampers.size() >= static_cast<unsigned int>(activity.slots));
         }
     }
     

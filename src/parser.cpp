@@ -1,6 +1,6 @@
-#include "include/classes.h"
-#include "include/parser.h"
-#include "include/helper.h"
+#include "classes.h"
+#include "parser.h"
+#include "helper.h"
 
 void dataReader()
 {
@@ -34,7 +34,7 @@ void camperParser(fstream& stream)
         string word;
 
         // Break up words from line to create data vector
-        for (int iter = 0; iter <= line.length(); iter++)
+        for (unsigned int iter = 0; iter <= line.length(); iter++)
         {
             // Iterates one extra time to get last word
             if (line[iter] == ',' || iter == line.length())
@@ -86,7 +86,7 @@ void activityParser(fstream& stream)
         string word;
 
         // Break up words from line to create data vector
-        for (int iter = 0; iter <= line.length(); iter++)
+        for (unsigned int iter = 0; iter <= line.length(); iter++)
         {
             // Iterates one extra time to get last word
             if (line[iter] == ',' || line[iter] == ':' || iter == line.length())
@@ -102,13 +102,14 @@ void activityParser(fstream& stream)
 
         // Assign vector elements to variables
         string name = data[0];
-        int slots = stoi(data[1]);
-        int day = stoi(data[2]);
-        int startTime = msm(stoi(data[3]), stoi(data[4]));
-        int endTime = msm(stoi(data[5]), stoi(data[6]));
+        string location = data[1];
+        int slots = stoi(data[2]);
+        int day = stoi(data[3]);
+        int startTime = msm(stoi(data[4]), stoi(data[5]));
+        int endTime = msm(stoi(data[6]), stoi(data[7]));
 
         // Create Activity object
-        Activity_C activity(id, name, slots, day, startTime, endTime);
+        Activity_C activity(id, name, location, slots, day, startTime, endTime);
 
         // Add Activity object to vector
         Activity_V.push_back(activity);
